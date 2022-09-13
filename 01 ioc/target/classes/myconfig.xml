@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="mybeans.MyBean" id="first"></bean><!-- 여기서 bean을 등록한다.  -->
+	
+	<bean class="mybeans.MyLogic" id="second">
+		<constructor-arg ref="first"></constructor-arg>
+	</bean>
+	
+										<!-- 스코프로 범위를 지정해준다? -->
+	<bean class="mybeans.MyStatefulObj" id="third" scope="prototype">
+		<!-- 생성자, 값 순서대로 적어야한다? -->
+		<constructor-arg value="my-name"></constructor-arg><!-- 빈이  -->
+		<constructor-arg value="100"></constructor-arg>
+	</bean>
+											<!-- primary="true"를 주면 주요한 우선순위가 설정된다.
+											제일 먼저 출력해준다. 그러면 IOC 컨테이너가 동작할때 알아서 찾아서 주므로,
+											테스트 할때 아이디를 안넣어줘도 찾아올 수 있다. -->
+											
+	<!--빈을 등록할 때 같은 타입을 등록할 수 ㅇ씨다.,.? 어떤 것을 주입할 지 모르기 때문에 id값으로 구분할 수 있다..?  -->
+	<bean class="mybeans.MyStatefulObj" id="fourth" scope="prototype" primary="true">
+		<property name="name" value="bysetter"></property>
+		<property name="number" value="400"></property>
+	</bean>
+	
+</beans>
