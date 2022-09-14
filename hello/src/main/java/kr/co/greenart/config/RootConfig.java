@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -22,6 +23,7 @@ import kr.co.greenart.model.car.CarRepository;
 @PropertySource("classpath:kr/co/greenart/config/mysql.properties" )//value=내가 읽고자 하는 properties 를 적어준다. 
 //@ComponentScan("kr.co.greenart.model.car")
 @EnableTransactionManagement //트렌젝션이 필요하다!!- 트렌젝션 관리자를 빈으로 등록해야 한다. 
+@EnableAspectJAutoProxy//--9.14추가 aspectJ 사용할려고 추가함.(메소드 실행할 때 aspectJ를 적용할 수 있다!) 
 public class RootConfig {
 	@Value("${jdbc.drivername}")//value값을 읽어서 변수로 넣어줌
 	private String drivername;
